@@ -1,5 +1,4 @@
 import numpy as np
-import textwrap
 
 #----Start of Bit Boards----
 class bitBoard:     
@@ -32,16 +31,32 @@ def makeMove(piece, startSq, endSq):
 def printBitBoard(bitBoard):
     bstring = (bin(bitBoard)[2:].zfill(64))
     bstring = bstring.replace("0",".")
-    bstring = textwrap.wrap(bstring, 8)
-    for rank in reversed(bstring):
-        print(rank)
 
-def notationConverter(notation):
-    letters = {"A": 1,"B": 2,"C": 3,"D": 4,"E": 5,"F": 6,"G": 7,"H": 8}
-    for letters in notation:
-        notation.replace(letter,letters.get(letter))
+    bList = []
+    index = 0
+    while index <= 64: 
+        bList.append(bstring[index:index+8])
+        index += 8
 
-    if notation
+    for ranks in reversed(bList):
+        print(ranks)
 
+def notationToChoords(notation):
+    rankFrom = ord(notation[0:1])-97
+    fileFrom = int(notation[1:2])-1
+
+    rankTo = ord(notation[2:3])-97
+    fileTo = int(notation[3:4])-1
+
+    bitFrom = (8*rankFrom) + fileFrom
+    bitTo = (8*rankTo) + fileTo
+
+    string = [bitFrom, bitTo]
+
+    if len(notation) == 5:
+        string.append(notation[4:5])
+
+    return string
+    
 #----start of main---
-notationConverter(n4)
+makeMove()
