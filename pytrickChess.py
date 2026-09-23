@@ -1,6 +1,35 @@
 import numpy as np
 import re
 import bitboards as bbs
+import moveGen as mvg
+#-------functions-------
+def notationReader(notation):
+	squareFrom = notation[0:2]
+	squareTo = notation[2:4]
+	proCheck = notation[4]
+	
+	
+#-------main-------
+fenString = input("Input Starting FEN: ")
 
-fenSring = input("Input Starting FEN: ") 
-bbs.printBoard(bbs.makeBitBoards("1B6/2n5/p1N1P2R/P1K3N1/4Pk2/1Q2p2p/6nP/1B4R1 w - - 0 1"))
+#selects colour
+colour = input("Colour (white/black): ")
+if colour == "white":
+	colour = 1;
+else:
+	colour = 0;
+	
+#printboards
+if fenString == "":
+	bbs.printBoard(bbs.makeBitBoards("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"))
+else:
+	bbs.printBoard(bbs.makeBitBoards(fenString))
+
+#move functions, counter starts from 1
+counter = 1
+if counter % 2 == colour:
+	print(notationReader(input("your move: ")))
+else:
+	print("thinking")
+	
+	
